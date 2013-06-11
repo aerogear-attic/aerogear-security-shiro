@@ -1,4 +1,4 @@
-/**
+/*
  * JBoss, Home of Professional Open Source
  * Copyright Red Hat, Inc., and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
@@ -18,7 +18,6 @@
 package org.jboss.aerogear.security.shiro.authz;
 
 import org.jboss.aerogear.security.authz.IdentityManagement;
-import org.jboss.aerogear.security.model.AeroGearUser;
 import org.jboss.aerogear.security.shiro.model.Role;
 import org.jboss.aerogear.security.shiro.model.User;
 
@@ -32,7 +31,7 @@ import java.util.Set;
  * <i>GrantMethods</i> implementation is a builder to apply roles to {@link org.jboss.aerogear.security.model.AeroGearUser}
  */
 @ApplicationScoped
-public class GrantConfiguration implements IdentityManagement.GrantMethods {
+public class GrantConfiguration implements IdentityManagement.GrantMethods<User> {
 
     @Inject
     private EntityManager entityManager;
@@ -62,10 +61,10 @@ public class GrantConfiguration implements IdentityManagement.GrantMethods {
      * @param aeroGearUser represents a simple user's implementation to hold credentials.
      */
     @Override
-    public void to(AeroGearUser aeroGearUser) {
+    public void to(String username) {
 
         User user = entityManager.createNamedQuery("User.findByUsername", User.class)
-                .setParameter("username", aeroGearUser.getUsername())
+                .setParameter("username", username)
                 .getSingleResult();
 
         user.setRoles(list);
