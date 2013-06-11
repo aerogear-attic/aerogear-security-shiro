@@ -29,6 +29,9 @@ import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import java.io.Serializable;
 
+/**
+ * A <i>AuthenticationManager</i> implementation executes the basic authentication operations for User
+ */
 @ApplicationScoped
 public class AuthenticationManagerImpl implements AuthenticationManager<User> {
 
@@ -39,6 +42,13 @@ public class AuthenticationManagerImpl implements AuthenticationManager<User> {
     @Produces
     private Serializable sessionId;
 
+    /**
+     * Logs in the specified User.
+     *
+     * @param user represents a simple implementation that holds user's credentials.
+     * @throws org.jboss.aerogear.security.exception.AeroGearSecurityException
+     *          on login failure.
+     */
     @Override
     public boolean login(User user, String password) {
         UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(),
@@ -54,6 +64,12 @@ public class AuthenticationManagerImpl implements AuthenticationManager<User> {
         return true;
     }
 
+    /**
+     * Logs out the specified User from the system.
+     *
+     * @throws org.jboss.aerogear.security.exception.AeroGearSecurityException
+     *          on logout failure.
+     */
     @Override
     public void logout() {
         subject.logout();

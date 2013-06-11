@@ -29,6 +29,9 @@ import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+/**
+ * Producer to easily retrieve the Subject into the system
+ */
 @Singleton
 public class ShiroConfig {
 

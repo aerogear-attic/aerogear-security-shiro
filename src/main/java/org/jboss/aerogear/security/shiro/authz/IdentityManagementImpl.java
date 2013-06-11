@@ -33,6 +33,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * <i>IdentityManagement</i> allows to assign a set of roles to User on Identity Manager provider
+ */
 @ApplicationScoped
 public class IdentityManagementImpl implements IdentityManagement<User> {
 
@@ -45,6 +48,12 @@ public class IdentityManagementImpl implements IdentityManagement<User> {
     @Inject
     private Subject subject;
 
+    /**
+     * This method allows to specify which <i>roles</i> must be assigned to User
+     *
+     * @param roles The list of roles.
+     * @return {@link GrantMethods} is a builder which a allows to apply a list of roles to the specified User.
+     */
     @Override
     public GrantMethods grant(String... roles) {
         return grantConfiguration.roles(roles);
@@ -77,13 +86,22 @@ public class IdentityManagementImpl implements IdentityManagement<User> {
         entityManager.remove(user);
     }
 
+    /**
+     * This method creates a new User
+     *
+     * @param user
+     * @param password
+     */
     @Override
-    public void create(User aeroGearUser, String password) {
-        User user = new User(aeroGearUser.getUsername(),
+    public void create(User user, String password) {
+        User newUser = new User(user.getUsername(),
                 new Sha512Hash(password).toHex());
-        entityManager.persist(user);
+        entityManager.persist(newUser);
     }
 
+    /**
+     * Represents the generated secret for the current User logged in.
+     */
     @Produces
     @Secret
     @Override
@@ -107,6 +125,13 @@ public class IdentityManagementImpl implements IdentityManagement<User> {
         return user.getUsername();
     }
 
+
+    /**
+     * Role validation against the IDM
+     *
+     * @param roles roles to be checked
+     * @return returns true if the current logged in has roles at the IDM, false otherwise
+     */
     @Override
     public boolean hasRoles(Set<String> roles) {
         return subject.hasAllRoles(roles);

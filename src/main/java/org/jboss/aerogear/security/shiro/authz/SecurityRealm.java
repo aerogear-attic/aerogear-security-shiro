@@ -34,6 +34,9 @@ import org.jboss.aerogear.security.shiro.model.User;
 
 import javax.inject.Inject;
 
+/**
+ * Shiro realm configuration
+ */
 public class SecurityRealm extends AuthorizingRealm {
 
     @Inject

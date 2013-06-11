@@ -28,7 +28,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * <i>GrantMethods</i> implementation is a builder to apply roles to {@link org.jboss.aerogear.security.model.AeroGearUser}
+ * <i>GrantMethods</i> implementation is a builder to apply roles to User
  */
 @ApplicationScoped
 public class GrantConfiguration implements IdentityManagement.GrantMethods<User> {
@@ -39,7 +39,7 @@ public class GrantConfiguration implements IdentityManagement.GrantMethods<User>
     private Set<Role> list;
 
     /**
-     * This method specifies which roles will be applied to {@link org.jboss.aerogear.security.model.AeroGearUser}
+     * This method specifies which roles will be applied to User
      *
      * @param roles Array of roles
      * @return builder implementation
@@ -58,7 +58,7 @@ public class GrantConfiguration implements IdentityManagement.GrantMethods<User>
     /**
      * This method applies roles specified on {@link org.jboss.aerogear.security.authz.IdentityManagement#grant(String...)}
      *
-     * @param aeroGearUser represents a simple user's implementation to hold credentials.
+     * @param username represents a simple user's implementation to hold credentials.
      */
     @Override
     public void to(String username) {
