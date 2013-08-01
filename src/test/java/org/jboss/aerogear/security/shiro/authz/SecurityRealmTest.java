@@ -47,7 +47,6 @@ public class SecurityRealmTest {
     @InjectMocks
     private SecurityRealm securityRealm;
 
-
     @Before
     public void setUp() throws Exception {
         securityRealm = new SecurityRealm();

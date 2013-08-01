@@ -17,7 +17,6 @@
 
 package org.jboss.aerogear.security.shiro.model;
 
-
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -46,7 +45,6 @@ public class Role {
     public Role(String name) {
         this.name = name;
     }
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

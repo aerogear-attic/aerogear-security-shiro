@@ -57,4 +57,3 @@ public class ShiroConfig {
         return SecurityUtils.getSubject();
     }
 }
-

@@ -125,7 +125,6 @@ public class IdentityManagementImpl implements IdentityManagement<User> {
         return user.getUsername();
     }
 
-
     /**
      * Role validation against the IDM
      *

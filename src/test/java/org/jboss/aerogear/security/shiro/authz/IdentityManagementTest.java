@@ -35,7 +35,6 @@ import static org.mockito.Mockito.when;
 
 public class IdentityManagementTest {
 
-
     @Mock
     private Subject subject;
 
